@@ -10,8 +10,7 @@ from transformers import T5ForConditionalGeneration,T5Tokenizer
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    num_perturbations = 100
-    budget = 15
+   
     t5model = T5ForConditionalGeneration.from_pretrained('Vamsi/T5_Paraphrase_Paws')
     t5tokenizer = T5Tokenizer.from_pretrained('t5-base')
 
@@ -24,8 +23,13 @@ if __name__ == "__main__":
         seed=seed
     )
 
-
+    
     # EXAMPLE USAGE
-    query = 5
-    score = detector.detect("The dog is running.",num_perturbations,budget)
+    num_perturbations = 100
+    budget = 15
+    sent = "The dog is running."
+    query = 12
+
+    print(f"Detecting...\nsentence: {sent}\nQuery check: {query}")
+    score = detector.detect(sent,num_perturbations,budget)
     print(f"Likely LLM-generated: {score[query]>0}")
