@@ -9,8 +9,7 @@ from transformers import T5ForConditionalGeneration,T5Tokenizer
 
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
-
-   
+    seed = 0
     t5model = T5ForConditionalGeneration.from_pretrained('Vamsi/T5_Paraphrase_Paws')
     t5tokenizer = T5Tokenizer.from_pretrained('t5-base')
 
