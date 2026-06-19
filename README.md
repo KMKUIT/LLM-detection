@@ -5,6 +5,7 @@
 </div> -->
 
 **As part of:** Bachelor Thesis Artificial Intelligence;
+
 **Built by:** Kamil Kuit.
 
 
