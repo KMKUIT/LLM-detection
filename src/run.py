@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import torch
+import warnings
 
 from detector import BayesianDetector
 from af import build_af
@@ -30,6 +31,7 @@ if __name__ == "__main__":
     sent = "The dog is running."
     query = 12
 
-    print(f"Detecting...\nsentence: {sent}\nQuery check: {query}")
-    score = detector.detect(sent,num_perturbations,budget)
-    print(f"Likely LLM-generated: {score[query]>0}")
+    with warnings.catch_warnings(action="ignore"):
+        print(f"Detecting...\nsentence: {sent}\nQuery check: {query}")
+        score = detector.detect(sent,num_perturbations,budget)
+        print(f"Likely LLM-generated: {score[query]>0}")
