@@ -10,18 +10,18 @@ from transformers import T5ForConditionalGeneration,T5Tokenizer
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    num_perturbations = 200
-    budget = 30
-    N = 200
+    num_perturbations = 100
+    budget = 15
     t5model = T5ForConditionalGeneration.from_pretrained('Vamsi/T5_Paraphrase_Paws')
     t5tokenizer = T5Tokenizer.from_pretrained('t5-base')
 
     detector = BayesianDetector(
-        acquisition_fn_builder=lambda m: build_af(m, aqn_name="PSTD",N=N),
+        acquisition_fn_builder=lambda m: build_af(m, aqn_name="NIPV",N=N,seed=seed),
         t5model=t5model,
         t5tokenizer=t5tokenizer,
         device=device,
-        random_sampling=False
+        random_sampling=False,
+        seed=seed
     )
 
 
